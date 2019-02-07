@@ -1,0 +1,29 @@
+﻿@model RoomReservation.ViewModel.RoomViewModel
+
+<h1>Edit @ViewData["RoomNo"]</h1>
+
+<form method="post">
+    <input type="hidden" asp-for=@Model.RoomId value=@ViewData["RoomId"] />
+
+    <div class="form-group">
+        <label asp-for=@Model.RoomNo></label>
+        <input asp-for=@Model.RoomNo value=@ViewData["RoomNo"] />
+    </div>
+
+    <div class="form-group">
+        <label asp-for=@Model.RoomType>Room Type</label>
+        <select asp-for="@Model.RoomType">
+            <option value="Single">Single</option>
+            <option value="Double">Double</option>
+            <option value="Family">Family</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label asp-for=@Model.Rate></label>
+        <input asp-for=@Model.Rate value=@ViewData["Rate"] />
+    </div>
+
+    <input class="btn btn-default" type="submit" name="Update" value="Update" />
+
+</form>

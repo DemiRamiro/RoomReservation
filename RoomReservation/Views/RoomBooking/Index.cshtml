@@ -1,0 +1,50 @@
+﻿@model RoomReservation.ViewModel.RoomBoookingViewModel
+
+<form method="put">
+    <div class="container">
+        <div class='col-sm-6'>
+            <input type="hidden" id="RoomId" asp-for="RoomId" value="@ViewBag.Id" />
+
+            <div class="form-group">
+                <h2> @ViewBag.RoomType</h2>
+                <h3>Room No : @ViewBag.RoomNo</h3>
+            </div>
+
+            <div class="form-group">
+                <label>Rate</label>
+                <input type="text" name="rate" id="rate" value="@ViewBag.Rate" />
+            </div>
+
+            <div class="form-group">
+                <label asp-for="BookingDateFrom"></label>
+                <input type="text" id="datepickerfr" asp-for="BookingDateFrom" />
+                <span asp-validation-for="BookingDateFrom"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="BookingDateTo"></label>
+                <input type="text" name="BookingDateTo" id="datepickerto" asp-for="BookingDateTo" />
+                <span asp-validation-for="BookingDateTo"></span>
+            </div>
+
+            <div class="form-group">
+                <label>Total Days</label>
+                <input type="text" name="days" id="days" />
+            </div>
+
+            <div class="form-group">
+                <label asp-for="TotalBill"></label>
+                <input type="text" name="TotalBill" id="total" asp-for="TotalBill" />
+                <span asp-validation-for="TotalBill"></span>
+                <input type="button" value="Calculate Days" onclick="CalculateTotal();" />
+            </div>
+
+            <div>
+                <input type="submit" name="save" value="Book" />
+            </div>
+
+        </div>
+    </div>
+</form>
+
+

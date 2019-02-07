@@ -1,0 +1,21 @@
+﻿@model RoomReservation.ViewModel.RoomViewModel
+
+<h1>Rooms</h1>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Room No</th>
+            <th>Room Type</th>
+            <th>Rate</th>
+            <th>Status</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var room in Model.Rooms)
+        {
+          @Html.Partial( "_Summary", room );
+        }
+    </tbody>
+</table>

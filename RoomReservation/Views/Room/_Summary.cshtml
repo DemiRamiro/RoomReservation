@@ -1,0 +1,45 @@
+﻿@model RoomReservation.Models.Room
+
+@if (Model.RoomStatus == "Available")
+{
+<tr class="success">
+    <td>@Model.RoomNo</td>
+    <td>@Model.RoomType</td>
+    <td>@Model.Rate</td>
+    <td>@Model.RoomStatus</td>
+    
+    <td>
+        <a asp-controller="RoomBooking" asp-action="BookRoom"
+           asp-route-roomId="@Model.RoomId"
+           asp-route-roomRate="@Model.Rate" 
+           asp-route-roomNo="@Model.RoomNo" 
+           asp-route-roomType="@Model.RoomType">BOOK!</a>
+    </td>
+    
+    <td>
+        <a asp-controller="Room" asp-action="Details"
+           asp-route-id="@Model.RoomId"
+           asp-route-roomNo="@Model.RoomNo">Details</a>
+    </td>
+    
+    <td>
+        <a asp-controller="Room" asp-action="EditRoom"
+           asp-route-roomId="@Model.RoomId"
+           asp-route-roomNo="@Model.RoomNo">Edit Room</a>
+    </td>
+</tr>
+}
+else if (Model.RoomStatus == "Reserved")
+{
+    <tr class="danger">
+        <td>@Model.RoomNo</td>
+        <td>@Model.RoomType</td>
+        <td>@Model.Rate</td>
+        <td>@Model.RoomStatus</td>
+        <td><a asp-controller="Room" asp-action="Details" 
+               asp-route-id="@Model.RoomId" 
+               asp-route-roomNo="@Model.RoomNo">Details</a></td>
+    </tr>
+}
+
+

@@ -1,0 +1,84 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <title>@ViewBag.Title</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="~/node_modules/jqueryui/jquery-ui.css" rel="stylesheet" />
+
+    <script src="~/node_modules/jquery/dist/jquery.min.js"></script>
+
+    <script src="~/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <link href="~/node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+    <style>
+        .carousel-inner > .item > img,
+        .carousel-inner > .item > a > img {
+            width: 70%;
+            margin: auto;
+        }
+    </style>
+
+    <script src="~/node_modules/jqueryui/jquery-ui.js"></script>
+
+    <script>
+        $(function () {
+            $("#datepickerfr").datepicker();
+            $("#datepickerto").datepicker();
+        });
+
+        function CalculateTotal() {
+            var start = $("#datepickerfr").datepicker("getDate");
+            var end = $("#datepickerto").datepicker("getDate");
+
+            if (start != null && end != null) {
+                days = (end - start) / (1000 * 60 * 60 * 24);
+                $("#days").val(days);
+                rate = $("#rate").val();
+                total = days * rate;
+                $("#total").val(total);
+            }
+            else {
+                alert("Please check your inputs");
+            }
+        }
+
+    </script>
+
+</head>
+<body>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" asp-controller="Home" asp-action="Index">My Hotel</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+                <li><a asp-controller="Room" asp-action="Index">Rooms</a></li>
+                <li><a href="#">Manage Booking</a></li>
+                <li><a href="#">About</a></li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        User Management
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a asp-controller="ApplicationRole" asp-action="Index">Roles</a></li>
+                        <li><a asp-controller="User" asp-action="Index">Users</a></li>
+                        <li><a href="#">Page 1-3</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div>
+        @RenderBody()
+    </div>
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>
